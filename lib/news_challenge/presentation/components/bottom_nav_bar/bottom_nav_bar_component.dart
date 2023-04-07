@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:tarek_elabd_challenges/news_challenge/app_constants/text_constants.dart';
 
 import '../../controller/bottom_provider.dart';
 
@@ -27,22 +28,22 @@ class CustomBottomNavBar extends StatelessWidget {
                 activeColor: Colors.white,// selected icon and text color
                 iconSize: 30, // tab button icon size
                 tabBackgroundColor: Colors.blue, // selected tab background color
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // navigation bar padding
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5), // navigation bar padding
                 tabs: const [
                   GButton(
                     icon: Icons.home,
-                    text: 'Home',
+                    text: AppText.home,
                   ),
                   GButton(
-                    icon: Icons.favorite_border,
+                    icon: Icons.vpn_lock,
                     text: 'Likes',
                   ),
                   GButton(
-                    icon: Icons.search,
-                    text: 'Search',
+                    icon: Icons.bookmark,
+                    text:AppText.bookMark,
                   ),
                   GButton(
-                    icon: Icons.people,
+                    icon: Icons.person,
                     text: 'Profile',
                   )
                 ]

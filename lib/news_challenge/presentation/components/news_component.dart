@@ -1,76 +1,89 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:tarek_elabd_challenges/news_challenge/presentation/screens/new_details/new_details_screen.dart';
+
+import '../../domain/entities/new.dart';
 
 class NewsComponent extends StatelessWidget {
-  const NewsComponent({Key? key}) : super(key: key);
+  const NewsComponent({Key? key, required this.newsComponent}) : super(key: key);
 
+    final NewEntity newsComponent;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: CachedNetworkImage(
-              height: 120,
-              imageUrl:"https://penaltyfile.com/wp-content/uploads/2020/06/different-types-of-sports-June32020-1-min.jpg",
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: ( ) {
+       Navigator.pushNamed(context, NewDetailsScreen.id,
+       arguments: newsComponent
+       );
+      },
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: CachedNetworkImage(
+                height: 120,
+                imageUrl:newsComponent.image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        const SizedBox(width: 10,),
-        Expanded(
-          flex: 2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Sports",
-                style: TextStyle(color: Colors.grey),
-              ),
-              const SizedBox(height: 10,),
-
-              const Text("What Training Do Volleyball Players Need?",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
+          const SizedBox(width: 10,),
+          Expanded(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 Text(newsComponent.categoryName,
+                  style: const TextStyle(color: Colors.grey),
                 ),
-              ),
-              const SizedBox(height: 10,),
-              Row(
+                const SizedBox(height: 10,),
 
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                children: const [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey,
+                 Text(newsComponent.overView,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
                   ),
-                  Text("Mckindney",
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                ),
+                const SizedBox(height: 10,),
+                Row(
 
-                  Icon(
-                    Icons.circle,
-                    color: Colors.grey,
-                    size: 10.0,
-                  ),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                  Text("Feb 27,2023",
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                  children:  [
+                    const CircleAvatar(
+                      radius: 16,
+                      backgroundColor: Colors.grey,
+                      child: Icon(Icons.person,color: Colors.white,),
+                    ),
+                    Text(newsComponent.authorName,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
 
-                ],
-              )
+                    const Icon(
+                      Icons.circle,
+                      color: Colors.grey,
+                      size: 10.0,
+                    ),
+
+                    Text(newsComponent.date,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+
+                  ],
+                )
 
 
-            ],
-          ),
-        )
+              ],
+            ),
+          )
 
 
-      ],
+        ],
+      ),
     );
   }
 }
